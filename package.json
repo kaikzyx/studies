@@ -2,14 +2,18 @@
     "name": "studies",
     "private": true,
     "version": "0.0.0",
+    "homepage": "https://kaikzyx.github.io/studies/",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     },
     "devDependencies": {
         "@types/p5": "^1.7.6",
+        "gh-pages": "^6.3.0",
         "typescript": "~5.8.3",
         "vite": "^6.3.5"
     },
