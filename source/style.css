@@ -5,10 +5,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     background-color: #111;
 }
 
+canvas {
+    display: block;
+}
+
 #sketch {
-    text-align: center;
+    box-shadow: 0 0 48px black;
 }
