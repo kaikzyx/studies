@@ -10,7 +10,7 @@ if (SKETCH) {
             document.title = `sketch: ${SKETCH}`;
             new p5(module.default, document.getElementById("sketch")!);
         })
-        .catch((_error) => {
+        .catch(() => {
             document.body.innerHTML = `<h1>Sketch "${SKETCH}" not found.</h1>`;
         });
 } else {
