@@ -1,18 +1,33 @@
 import "./style.css";
 import p5 from "p5";
 
-// Get the sketch name from the URL path.
-const SKETCH = window.location.pathname.slice(1);
+const app = document.getElementById("app")!;
 
-if (SKETCH) {
-    import(`./sketches/${SKETCH}/index.ts`)
+function load(): void {
+    // Clear the app.
+    app.innerHTML = "";
+
+    // Get the sketch name from the hash (#).
+    const sketch = window.location.hash.slice(1);
+
+    if (!sketch) {
+        document.title = "sketch not selected.";
+        app.innerHTML = "<h1>Please add a route to load a sketch.</h1>";
+        return;
+    }
+
+    import(`./sketches/${sketch}/index.ts`)
         .then((module) => {
-            document.title = `sketch: ${SKETCH}`;
-            new p5(module.default, document.getElementById("sketch")!);
+            document.title = `sketch: ${sketch}`;
+            new p5(module.default, app);
         })
         .catch(() => {
-            document.body.innerHTML = `<h1>Sketch "${SKETCH}" not found.</h1>`;
+            document.title = "sketch not found.";
+            app.innerHTML = `<h1>Sketch "${sketch}" not found.</h1>`;
         });
-} else {
-    document.body.innerHTML = `<h1>Please add a route to load a sketch.</h1>`;
 }
+
+load();
+
+// Reload when hash changes.
+window.addEventListener("hashchange", load);

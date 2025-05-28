@@ -10,8 +10,9 @@ body {
 
 canvas {
     display: block;
+    box-shadow: 0 0 48px black;
 }
 
-#sketch {
-    box-shadow: 0 0 48px black;
+#app {
+    color: white;
 }
